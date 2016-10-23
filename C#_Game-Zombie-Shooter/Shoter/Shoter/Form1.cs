@@ -28,7 +28,7 @@ namespace Shoter
         int misses = 0;
         int totalshots = 0;
         double averageShots = 0;
-
+    
      
         CZombie zombie;
 
@@ -45,6 +45,7 @@ namespace Shoter
         public Shooter()
         {
             InitializeComponent();
+            
 
             Bitmap bmp = new Bitmap(Resources.GunSught);
 
@@ -52,7 +53,7 @@ namespace Shoter
 
             zombie = new CZombie() { Left = 300, Top = 400 };
 
-            craks = new GroundCracks() { Left = 280, Top = 400 };
+            
 
             zombieHoldingMenu = new InGameMenu() { Left = 1120, Top = 470 };
 
@@ -60,24 +61,25 @@ namespace Shoter
 
             bloodSplat = new BloodSplat();
 
-            
+          
         }
 
         private void timerGameLoop_Tick(object sender, EventArgs e)
         {
+            
             if (gameFrame >= 7)
             {
                 UpdateZombie();
                 gameFrame = 0;
             }
-
+           
             gameFrame++;
 
             this.Refresh();
 
             if (splat)
             {
-                if (splatTime >= 1)
+                if (splatTime >= -100)
                 {
                     splat = false;
                     splatTime = 0;
@@ -154,7 +156,8 @@ namespace Shoter
             else if (e.X > 1168 && e.X < 1205 && e.Y > 645 && e.Y < 652) // QUIT GAME 
             {
                 timerGameLoop.Stop();
-                Application.Exit();
+                 Application.Exit();
+                
             }
 
             else
@@ -184,7 +187,7 @@ namespace Shoter
 
         private void GunFire()
         {
-            SoundPlayer sound = new SoundPlayer(Resources._380_gunshot_single_mike_koenig);
+            SoundPlayer sound = new SoundPlayer(Resources.shotgun_spas_12_RA_The_Sun_God_503834910);
             sound.Play();
         }
     }
